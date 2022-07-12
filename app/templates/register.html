@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-">
+        <div class="col-12 col col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 10px;">
+                <div class="card-body p-5">
+                    <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                    {% for msg in messages %}
+                    <h6 class="alert alert-success">{{msg}}</h6>
+                    {% endfor %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{form | crispy }}
+                        <br>
+                        <button type="submit" class="btn btn-info btn-block gradient-custom-4 text-body">Register</button>
+                        <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'login' %}" class="fw-bold text-body"><u>Login here</u></a></p>
+                    </form>                
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
+{% endblock %}
